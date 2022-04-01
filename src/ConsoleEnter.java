@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class ConsoleEnter {
 
     public static StringBuilder consoleEnter (){
-        System.out.println("Военный! Тщательно введи текст шифровки. В конце сообщения введи \"end\".");
+        //System.out.println("Военный! Тщательно введи текст для шифрования. В конце сообщения введи \"end\".");
         Scanner scanner = new Scanner(System.in);
         StringBuilder stringBuilder = new StringBuilder();
         String string;

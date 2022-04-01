@@ -1,4 +1,4 @@
-public class Morse {
+public class EncoderMethod {
 
     // Такую кривоту я написал, когда был молодой и глупый.
     // Теперь я постарел и поумнел, и понимаю, что лучше делать алфавит в хэшМапе и получать доступ по ключу
@@ -48,7 +48,7 @@ public class Morse {
 
     final static String DOT = "та-та-та-та-та-та ";
     final static String COMMA = "та-пиии-та-пиии-та-пиии ";
-    final static String SPACE = " ";
+    //final static String SPACE = " ";
     final static String SEMICOLON = "пиии-та-пиии-та-пиии-та ";
     final static String COLON = "пиии-пиии-пиии-та-та-та ";
     final static String QUESTION = "та-та-пиии-пиии-та-та ";
@@ -64,7 +64,7 @@ public class Morse {
         for(int i = 0; i<str.length(); i++){
             char a = str.charAt(i);
             string = Character.toString(a);
-            if(string.equalsIgnoreCase("a")){
+            if(string.equalsIgnoreCase("а")){
                 strbld.append(A);
             }else if (string.equalsIgnoreCase("б")){
                 strbld.append(BE);
@@ -154,8 +154,8 @@ public class Morse {
                 strbld.append(DOT);
             }else if (string.equalsIgnoreCase(",")){
                 strbld.append(COMMA);
-            }else if (string.equalsIgnoreCase(" ")){
-                strbld.append(SPACE);
+           // }else if (string.equalsIgnoreCase(" ")){
+                //strbld.append(SPACE);
             }else if (string.equalsIgnoreCase(";")){
                 strbld.append(SEMICOLON);
             }else if (string.equalsIgnoreCase(":")){
