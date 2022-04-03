@@ -8,7 +8,7 @@ public class EncoderMethod {
     final static String VE = "та-пиии-пиии ";
     final static String GE = "пиии-пиии-та ";
     final static String DE = "пиии-та-та ";
-    final static String E = "та";
+    final static String E = "та ";
     final static String ZHE = "та-та-та-пиии ";
     final static String ZE = "пиии-пиии-та-та ";
     final static String I = "та-та ";
@@ -155,7 +155,7 @@ public class EncoderMethod {
             }else if (string.equalsIgnoreCase(",")){
                 strbld.append(COMMA);
            // }else if (string.equalsIgnoreCase(" ")){
-                //strbld.append(SPACE);
+           //     strbld.append(SPACE);
             }else if (string.equalsIgnoreCase(";")){
                 strbld.append(SEMICOLON);
             }else if (string.equalsIgnoreCase(":")){
