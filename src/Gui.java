@@ -4,16 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Gui {
-    JLabel enterLabel;
-    JTextArea textAreaInput;
-    JLabel encoderLabel;
-    JLabel decoder;
+    static JTextArea textAreaInput;
+    static JTextArea textAreaOutPut;
     JRadioButton enButton;
     JRadioButton decButton;
-    JButton doButton;
-    JButton clear;
-    JLabel outputLabel;
-    JTextArea textAreaOutPut;
 
     public Gui(String label){
 
@@ -25,7 +19,7 @@ public class Gui {
         frame.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        enterLabel = new JLabel("Ввод");
+        JLabel enterLabel = new JLabel("Ввод");
         c.gridx=0;
         c.gridy =0;
         c.gridwidth = 1;
@@ -45,14 +39,14 @@ public class Gui {
         textAreaInput.setLineWrap(true);
         frame.add(new JScrollPane(textAreaInput), c);
 
-        encoderLabel = new JLabel("Шифр");
+        JLabel encoderLabel = new JLabel("Шифр");
         c.gridx=1;
         c.gridy=4;
         c.gridwidth = 1;
         c.gridheight = 1;
         frame.add(encoderLabel, c);
 
-        decoder = new JLabel("Дешифр");
+        JLabel decoder = new JLabel("Дешифр");
         c.gridx=2;
         c.gridy=4;
         frame.add(decoder, c);
@@ -71,18 +65,19 @@ public class Gui {
         group.add(enButton);
         group.add(decButton);
 
-        doButton = new JButton("Шифр/дешифр");
+        JButton actionButton = new JButton("Шифр/дешифр");
         c.gridx=4;
         c.gridy=5;
-        frame.add(doButton, c);
+        actionButton.addActionListener(new ActionButton());
+        frame.add(actionButton, c);
 
-        clear = new JButton("Очистить");
+        JButton clear = new JButton("Очистить");
         c.gridx=5;
         c.gridy=5;
         clear.addActionListener(new ClearButton());
         frame.add(clear, c);
 
-        outputLabel = new JLabel("Вывод");
+        JLabel outputLabel = new JLabel("Вывод");
         c.gridx=0;
         c.gridy =6;
         c.gridwidth = 1;
@@ -106,6 +101,18 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent e) {
             textAreaInput.setText("");
+            textAreaOutPut.setText("");
+        }
+    }
+    class ActionButton implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (enButton.isSelected()){
+                textAreaOutPut.setText(EncoderMethod.morseConvert(textAreaInput.getText()));
+            } else if (decButton.isSelected()){
+                textAreaOutPut.setText(DecoderMethod.decoderMethod(ABC.abc, textAreaInput.getText()));
+            }
         }
     }
 

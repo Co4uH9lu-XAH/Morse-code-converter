@@ -59,7 +59,8 @@ public class EncoderMethod {
     final static String SLASH = "пиии-та-та-пиии-та ";
 
     static String string;
-    public static StringBuilder morseConvert(String str){
+
+    public static String morseConvert(String str){
         StringBuilder strbld = new StringBuilder();
         for(int i = 0; i<str.length(); i++){
             char a = str.charAt(i);
@@ -174,6 +175,6 @@ public class EncoderMethod {
                 strbld.append(SLASH);
             }
         }
-        return strbld;
+        return strbld.toString();
     }
 }
