@@ -15,6 +15,7 @@ public class Gui {
         frame.setSize(800, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
         frame.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -51,7 +52,7 @@ public class Gui {
         c.gridy=4;
         frame.add(decoder, c);
 
-        enButton = new JRadioButton();
+        enButton = new JRadioButton("",true);
         c.gridx=1;
         c.gridy=5;
         frame.add(enButton, c);
@@ -109,9 +110,21 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (enButton.isSelected()){
-                textAreaOutPut.setText(EncoderMethod.morseConvert(textAreaInput.getText()));
+                if (textAreaInput.getText().isEmpty()& !textAreaOutPut.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Военный! Не в ту дырку!", "Аларм.",1);
+                }else if(textAreaInput.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"А чего шифровать-то?", "Аларм.",1);
+                } else{
+                    textAreaOutPut.setText(EncoderMethod.morseConvert(textAreaInput.getText()));
+                }
             } else if (decButton.isSelected()){
-                textAreaOutPut.setText(DecoderMethod.decoderMethod(ABC.abc, textAreaInput.getText()));
+                if(textAreaInput.getText().isEmpty()& !textAreaOutPut.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Военный! Не в ту дырку!", "Аларм.",1);
+                } else if(textAreaInput.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"А чего расшифровывать-то?", "Аларм.",1);
+                }else{
+                    textAreaOutPut.setText(DecoderMethod.decoderMethod(ABC.abc, textAreaInput.getText()));
+                }
             }
         }
     }
