@@ -17,6 +17,8 @@ public class Gui {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
+        ImageIcon image = new ImageIcon("image.jpg");
+        frame.setIconImage(image.getImage());
 
         panel = new JPanel();
         frame.add(panel);
