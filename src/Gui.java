@@ -8,6 +8,7 @@ public class Gui {
     static JTextArea textAreaOutPut;
     JRadioButton enButton;
     JRadioButton decButton;
+    JPanel panel;
 
     public Gui(String label){
 
@@ -17,7 +18,9 @@ public class Gui {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
-        frame.setLayout(new GridBagLayout());
+        panel = new JPanel();
+        frame.add(panel);
+        panel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
         JLabel enterLabel = new JLabel("Ввод");
@@ -30,7 +33,7 @@ public class Gui {
         c.insets = new Insets(10,10,0,0);
         c.ipadx = 0;
         c.ipady = 0;
-        frame.add(enterLabel, c);
+        panel.add(enterLabel, c);
 
         textAreaInput = new JTextArea(3,40);
         c.gridx=1;
@@ -38,29 +41,29 @@ public class Gui {
         c.gridheight = 3;
         c.insets = new Insets(10,10,0,10);
         textAreaInput.setLineWrap(true);
-        frame.add(new JScrollPane(textAreaInput), c);
+        panel.add(new JScrollPane(textAreaInput), c);
 
         JLabel encoderLabel = new JLabel("Шифр");
         c.gridx=1;
         c.gridy=4;
         c.gridwidth = 1;
         c.gridheight = 1;
-        frame.add(encoderLabel, c);
+        panel.add(encoderLabel, c);
 
         JLabel decoder = new JLabel("Дешифр");
         c.gridx=2;
         c.gridy=4;
-        frame.add(decoder, c);
+        panel.add(decoder, c);
 
         enButton = new JRadioButton("",true);
         c.gridx=1;
         c.gridy=5;
-        frame.add(enButton, c);
+        panel.add(enButton, c);
 
         decButton = new JRadioButton();
         c.gridx=2;
         c.gridy=5;
-        frame.add(decButton, c);
+        panel.add(decButton, c);
 
         ButtonGroup group = new ButtonGroup();
         group.add(enButton);
@@ -70,13 +73,13 @@ public class Gui {
         c.gridx=4;
         c.gridy=5;
         actionButton.addActionListener(new ActionButton());
-        frame.add(actionButton, c);
+        panel.add(actionButton, c);
 
         JButton clear = new JButton("Очистить");
         c.gridx=5;
         c.gridy=5;
         clear.addActionListener(new ClearButton());
-        frame.add(clear, c);
+        panel.add(clear, c);
 
         JLabel outputLabel = new JLabel("Вывод");
         c.gridx=0;
@@ -84,7 +87,7 @@ public class Gui {
         c.gridwidth = 1;
         c.gridheight = 3;
         c.insets = new Insets(10,10,0,0);
-        frame.add(outputLabel, c);
+        panel.add(outputLabel, c);
 
         textAreaOutPut = new JTextArea(3,40);
         c.gridx=1;
@@ -92,7 +95,7 @@ public class Gui {
         c.gridheight = 3;
         c.insets = new Insets(10,10,10,10);
         textAreaOutPut.setLineWrap(true);
-        frame.add(new JScrollPane(textAreaOutPut), c);
+        panel.add(new JScrollPane(textAreaOutPut), c);
 
         frame.pack();
         frame.setVisible(true);
@@ -109,19 +112,23 @@ public class Gui {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (enButton.isSelected()){
-                if (textAreaInput.getText().isEmpty()& !textAreaOutPut.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Военный! Не в ту дырку!", "Аларм.",1);
+            if (enButton.isSelected()) {
+                if (!textAreaInput.getText().isEmpty()&textAreaOutPut.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Военный! Надо на русском языке.", "Аларм.",2);
+                }else if (textAreaInput.getText().isEmpty()&!textAreaOutPut.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Военный! Не в ту дырку!", "Аларм.",2);
                 }else if(textAreaInput.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"А чего шифровать-то?", "Аларм.",1);
+                    JOptionPane.showMessageDialog(null,"А чего шифровать-то?", "Аларм.",2);
                 } else{
                     textAreaOutPut.setText(EncoderMethod.morseConvert(textAreaInput.getText()));
                 }
-            } else if (decButton.isSelected()){
-                if(textAreaInput.getText().isEmpty()& !textAreaOutPut.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Военный! Не в ту дырку!", "Аларм.",1);
+            } else if (decButton.isSelected()) {
+                if (!textAreaInput.getText().isEmpty()&textAreaOutPut.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Военный! Надо пи-пи-пи та-та-та....", "Аларм.",2);
+                } else if(textAreaInput.getText().isEmpty()&!textAreaOutPut.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Военный! Не в ту дырку!", "Аларм.",2);
                 } else if(textAreaInput.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"А чего расшифровывать-то?", "Аларм.",1);
+                    JOptionPane.showMessageDialog(null,"А чего расшифровывать-то?", "Аларм.",2);
                 }else{
                     textAreaOutPut.setText(DecoderMethod.decoderMethod(ABC.abc, textAreaInput.getText()));
                 }
