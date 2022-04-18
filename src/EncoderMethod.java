@@ -155,8 +155,6 @@ public class EncoderMethod {
                 strbld.append(DOT);
             }else if (string.equalsIgnoreCase(",")){
                 strbld.append(COMMA);
-           // }else if (string.equalsIgnoreCase(" ")){
-           //     strbld.append(SPACE);
             }else if (string.equalsIgnoreCase(";")){
                 strbld.append(SEMICOLON);
             }else if (string.equalsIgnoreCase(":")){

@@ -113,19 +113,15 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (enButton.isSelected()) {
-                if (!textAreaInput.getText().isEmpty()&textAreaOutPut.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Военный! Надо на русском языке.", "Аларм.",2);
-                }else if (textAreaInput.getText().isEmpty()&!textAreaOutPut.getText().isEmpty()){
+                if (textAreaInput.getText().isEmpty()&!textAreaOutPut.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Военный! Не в ту дырку!", "Аларм.",2);
                 }else if(textAreaInput.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,"А чего шифровать-то?", "Аларм.",2);
-                } else{
+                } else if (!textAreaInput.getText().isEmpty()&textAreaOutPut.getText().isEmpty()){
                     textAreaOutPut.setText(EncoderMethod.morseConvert(textAreaInput.getText()));
                 }
             } else if (decButton.isSelected()) {
-                if (!textAreaInput.getText().isEmpty()&textAreaOutPut.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Военный! Надо пи-пи-пи та-та-та....", "Аларм.",2);
-                } else if(textAreaInput.getText().isEmpty()&!textAreaOutPut.getText().isEmpty()){
+                 if(textAreaInput.getText().isEmpty()&!textAreaOutPut.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Военный! Не в ту дырку!", "Аларм.",2);
                 } else if(textAreaInput.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,"А чего расшифровывать-то?", "Аларм.",2);
